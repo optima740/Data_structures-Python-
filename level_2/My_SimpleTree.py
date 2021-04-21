@@ -72,7 +72,7 @@ class SimpleTree:
                     return []
             find(self.Root, val)
             return list_find_nodes
-        # ваш код поиска узлов по значению
+        # код поиска узлов по значению
 
     def MoveNode(self, OriginalNode, NewParent):
         if len(self.Root.Children) == 0 or OriginalNode == self.Root or self.Count() == 0:
@@ -118,6 +118,7 @@ class SimpleTree:
                 return count
             return find(self.Root, self.count_leaf)
         # количество листьев в дереве
+        
     def GetLevel(self):
         if self.Root == None:
             return 0
