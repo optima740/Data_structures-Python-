@@ -22,6 +22,8 @@ class BalancedBST:
         self.Root = None  # корень дерева
 
     def FindNodeByKey(self, key):
+        # ищем в дереве узел и сопутствующую информацию по ключу
+        # возвращает BSTFind
         itemFind = BSTFind()
         if self.Root == None:
             return itemFind
@@ -47,9 +49,10 @@ class BalancedBST:
                     return itemFind
                 return itemFind
             return find(self.Root, key)
-        # ищем в дереве узел и сопутствующую информацию по ключу
-        # возвращает BSTFind
+
     def AddKey(self, key):
+        # добавляем ключ-значение в дерево
+        # false если ключ уже есть
         search_result = self.FindNodeByKey(key)
         if self.Root == None:
             newNode = BSTNode(key, None)
@@ -71,10 +74,9 @@ class BalancedBST:
                 newNode.Parent = search_result.Node
                 newNode.Level = search_result.Node.Level + 1
                 return True
-        # добавляем ключ-значение в дерево
-          # false если ключ уже есть
 
     def GenerateTree(self, a):
+        # создаём сбалансирование дерево с нуля из неотсортированного массива a
         if len(a) == 0:
             return
         else:
@@ -97,10 +99,8 @@ class BalancedBST:
             for i in range(0, len(a), 2):
                 self.AddKey(a[i])
 
-    # создаём сбалансирование дерево с нуля из неотсортированного массива a
-
-
     def IsBalanced(self, root_node):
+        # сбалансировано ли дерево с корнем root_node
         if root_node == None:
             return False
         else:
@@ -131,8 +131,7 @@ class BalancedBST:
                 return True
             else:
                 return False
-
-                # сбалансировано ли дерево с корнем root_node
+                
     def  GetAllNodes(self):
         q = []
         list_all = []
