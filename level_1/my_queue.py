@@ -1,12 +1,13 @@
 import My_stack as ms
 
 class Queue:
+    
     def __init__(self):
         self.queue = []
 
     def enqueue(self, item):
-        self.queue.append(item)
         # вставка в хвост
+        self.queue.append(item)
 
     def dequeue(self):
         if self.size() > 0:
