@@ -1,4 +1,5 @@
 class Stack:
+    
     def __init__(self):
         self.stack = []
 
@@ -22,8 +23,9 @@ class Stack:
             return self.stack[0]
         else:
             return None  # если стек пустой
-
+"""
 def skobki(string):
+    # задачка с использованием структуры стек
     if string[0] == ')' or string[len(string) - 1] == '(':
         return False
     if len(string) != 0:
@@ -64,6 +66,6 @@ def StackToStack(string):
                 return st2.pop()
     else:
         return
-
+"""
 
 
