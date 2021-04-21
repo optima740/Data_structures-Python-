@@ -1,6 +1,5 @@
 import ctypes
 
-
 class DynArray:
 
     def __init__(self):
@@ -17,7 +16,6 @@ class DynArray:
     def __getitem__(self, i):
         if i < 0 or i >= self.count:
             raise IndexError('Index is out of bounds')
-
         return self.array[i]
 
     def resize(self, new_capacity):
@@ -39,11 +37,9 @@ class DynArray:
                 raise IndexError('Index is out of bounds')
             elif i == self.count:
                 self.append(itm)
-
             else:
                 if self.count == self.capacity:
                     self.resize(2 * self.capacity)
-
                 tmp_loc = self.make_array(self.count-i)
                 j = 0
                 for k in range(i, self.count):
@@ -60,7 +56,6 @@ class DynArray:
         else:
             raise IndexError('Index is out of bounds')
             return
-
 
     def delete(self, i):
         capacity_to_del= int(self.capacity/1.5)
@@ -83,10 +78,8 @@ class DynArray:
                         return
                     else:
                         self.resize(16)
-
             else:
                 tmp_loc = self.make_array(self.count-1)
-
                 j = 0
                 for k in range(self.count):
                     if k != i:
@@ -102,7 +95,6 @@ class DynArray:
                         self.resize(16)
                 return
         else:
-
             raise IndexError('Index is out of bounds')
             return
 
