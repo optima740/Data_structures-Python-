@@ -1,5 +1,3 @@
-
-
 class PowerSet:
 
     def __init__(self):
@@ -8,8 +6,8 @@ class PowerSet:
         self.size_count = 0
 
     def size(self):
-        return self.size_count
         # количество элементов в множестве
+        return self.size_count       
 
     def seek_slot(self, value):
         index_value = self.slots.get(value)
@@ -19,22 +17,24 @@ class PowerSet:
             return None
 
     def get(self, value):
+        # возвращает True если value имеется в множестве,
+        # иначе False
         index_value = self.seek_slot(value)
         if index_value != None:
             return True
         else:
-            return False
-        # возвращает True если value имеется в множестве,
-        # иначе False
+            return False        
 
     def put(self, value):
+        # всегда срабатывает
         carrent_value = self.seek_slot(value)
         if carrent_value != value:
             self.slots[value] = value
-            self.size_count += 1
-        # всегда срабатывает
+            self.size_count += 1      
 
     def remove(self, value):
+        # возвращает True если value удалено
+        # иначе False
         index_value = self.get(value)
         if index_value:
             self.slots.pop(value)
@@ -42,9 +42,6 @@ class PowerSet:
             return True
         else:
             return False
-
-        # возвращает True если value удалено
-        # иначе False
 
     def intersection(self, set2):
         # пересечение текущего множества и set2
@@ -79,14 +76,15 @@ class PowerSet:
         return set3
 
     def issubset(self, set2):
+        # возвращает True, если set2 есть
+        # подмножество текущего множества,
+        # иначе False
         key2 = set2.slots.keys()
         for i in key2:
             if i != None and self.get(i) == False:
                 return False
         return True
-        # возвращает True, если set2 есть
-        # подмножество текущего множества,
-        # иначе False
+
 """
 set1 = PowerSet()
 set2 = PowerSet()
