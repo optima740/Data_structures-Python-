@@ -1,5 +1,3 @@
-# наследуйте этот класс от HashTable
-# или расширьте его методами из HashTable
 class HashTable:
     def __init__(self, sz, stp):
         self.size_n = sz
@@ -14,10 +12,12 @@ class HashTable:
         return sum
 
     def hash_fun(self, value):
-        return self.str_to_int(value) % self.size_n
         # в качестве value поступают строки!
         # всегда возвращает корректный индекс слота
+        return self.str_to_int(value) % self.size_n
+         
     def seek_slot(self, value):
+        # находит индекс пустого слота для значения, или None
         count = 0
         index = self.hash_fun(value)
         while count <= self.size_n - 1:
@@ -28,24 +28,23 @@ class HashTable:
             else:
                 index += self.step
             count += 1
-        # находит индекс пустого слота для значения, или None
         return None
 
     def put(self, value):
+        # записываем значение по хэш-функции
+        # возвращается индекс слота или None,
+        # если из-за коллизий элемент не удаётся
+        # разместить
         value = str(value).strip()
         index_put = self.seek_slot(value)
         if index_put != None:
             self.slots[index_put] = value
             return index_put
-
         else:
             return None
-        # записываем значение по хэш-функции
-        # возвращается индекс слота или None,
-        # если из-за коллизий элемент не удаётся
-        # разместить
-
+     
     def find(self, value):
+        # находит индекс слота со значением, или None
         value = str(value).strip()
         find_index = self.hash_fun(value)
         count = 0
@@ -58,25 +57,23 @@ class HashTable:
                 find_index += self.step
             count += 1
         return
-        # находит индекс слота со значением, или None
 
 class PowerSet(HashTable):
-
     def __init__(self):
         super(PowerSet, self).__init__(20000, 1)
         self.util_index = []
         self.size_count = 0
+    
     def size(self):
-
-        return self.size_count
         # количество элементов в множестве
+        return self.size_count      
+        
     def seek_slot(self, value):
         count = 0
         index = self.hash_fun(value)
         while count <= self.size_n - 1:
             if self.slots[index] == None or self.slots[index] == value:
                 return index
-
             if index + self.step > self.size_n-1:
                 index = (index+self.step) - (self.size_n)
             else:
@@ -86,6 +83,7 @@ class PowerSet(HashTable):
         return None
 
     def put(self, value):
+        # всегда срабатывает
         value = str(value).strip()
         index_put = self.seek_slot(value)
         if index_put != None and self.slots[index_put] == value:
@@ -97,18 +95,17 @@ class PowerSet(HashTable):
             return index_put
         else:
             return None
-        # всегда срабатывает
 
     def get(self, value):
+        # возвращает True если value имеется в множестве,
+        # иначе False
         value = str(value).strip()
         index_get = self.seek_for_del(value)
         if index_get != None and self.slots[index_get] == value:
             return True
         else:
-
             return False
-        # возвращает True если value имеется в множестве,
-        # иначе False
+        
     def seek_for_del(self, value):
         count = 0
         index = self.hash_fun(value)
@@ -123,6 +120,8 @@ class PowerSet(HashTable):
         return None
 
     def remove(self, value):
+        # возвращает True если value удалено
+        # иначе False
         value = str(value).strip()
         if self.get(value):
             index_remove = self.seek_for_del(value)
@@ -135,8 +134,6 @@ class PowerSet(HashTable):
                 return False
         else:
             return False
-        # возвращает True если value удалено
-        # иначе False
 
     def intersection(self, set2):
         # пересечение текущего множества и set2
@@ -168,14 +165,16 @@ class PowerSet(HashTable):
         return set3
 
     def issubset(self, set2):
+        # возвращает True, если set2 есть
+        # подмножество текущего множества,
+        # иначе False
         for i in set2.util_index:
             value = set2.slots[i]
             if self.get(value) == False:
                 return False
         return True
-        # возвращает True, если set2 есть
-        # подмножество текущего множества,
-        # иначе False
+        
+        
 """
 set1 = PowerSet()
 set2 = PowerSet()
