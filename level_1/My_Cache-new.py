@@ -1,4 +1,5 @@
 class NativeCache:
+    
     def __init__(self, sz):
         self.size = sz
         self.slots = [None] * self.size
@@ -14,18 +15,19 @@ class NativeCache:
         return sum
 
     def hash_fun(self, key):
-        return self.str_to_code(key) % self.size
          # в качестве key поступают строки!
          # всегда возвращает корректный индекс слота
+        return self.str_to_code(key) % self.size
 
     def put(self, key, value):
+         # гарантированно записываем
+         # значение value по ключу key и возвращает индекс
         index = self.hash_fun(key)
-        if (self.slots[index] != None and self.slots[index] == key) or (self.slots[index] == None):    #если в слоту такой же ключ либо слот пустой
+        if (self.slots[index] != None and self.slots[index] == key) or (self.slots[index] == None):  #если в слоту такой же ключ либо слот пустой
             self.slots[index] = key
             self.values[index] = value
             return index
-
-        elif self.slots[index] != None and self.slots[index] != key:            # если слот не пустой и в слоту другой ключ
+        elif self.slots[index] != None and self.slots[index] != key:  # если слот не пустой и в слоту другой ключ
             count = 0
             while count < self.size:
                 if index + 1 <= self.size - 1:
@@ -37,9 +39,10 @@ class NativeCache:
                     self.values[index] = value
                     return
                 count += 1
-         # гарантированно записываем
-         # значение value по ключу key и возвращает индекс
+
     def is_key(self, key):
+        # возвращает True если ключ имеется,
+        # иначе False
         index = self.hash_fun(key)
         if self.slots[index] != key:
             count = 0
@@ -54,8 +57,6 @@ class NativeCache:
             return False
         else:
             return True
-         # возвращает True если ключ имеется,
-         # иначе False
 
     def get(self, key):
         if self.is_key(key) == True:
@@ -104,7 +105,6 @@ class NativeCache:
             return self.get(key)
         else:
             return
-
 import unittest
 
 class My_tests(unittest.TestCase):
