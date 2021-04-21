@@ -1,4 +1,5 @@
 class NativeCache:
+    
     def __init__(self, sz):
         self.size_n = sz
         self.slots = {}
