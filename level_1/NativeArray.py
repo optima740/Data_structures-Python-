@@ -1,4 +1,5 @@
 class NativeDictionary:
+    
     def __init__(self, sz):
         self.size = sz
         self.slots = [None] * self.size
@@ -12,11 +13,13 @@ class NativeDictionary:
         return sum
 
     def hash_fun(self, key):
-        return self.str_to_code(key) % self.size
-         # в качестве key поступают строки!
-         # всегда возвращает корректный индекс слота
+        # в качестве key поступают строки!
+        # всегда возвращает корректный индекс слота
+        return self.str_to_code(key) % self.size     
 
     def put(self, key, value):
+        # гарантированно записываем
+        # значение value по ключу key
         index = self.hash_fun(key)
         if self.slots[index] != None and self.slots[index] != key:
             count = 0
@@ -39,9 +42,10 @@ class NativeDictionary:
             self.slots[index] = key
             self.values[index] = value
             return
-         # гарантированно записываем
-         # значение value по ключу key
+         
     def is_key(self, key):
+        # возвращает True если ключ имеется,
+        # иначе False
         index = self.hash_fun(key)
         if self.slots[index] != key:
             count = 0
@@ -55,11 +59,11 @@ class NativeDictionary:
                 count += 1
             return False
         else:
-            return True
-         # возвращает True если ключ имеется,
-         # иначе False
+            return True      
 
     def get(self, key):
+        # возвращает value для key,
+        # или None если ключ не найден
         if self.is_key(key) == True:
             index = self.hash_fun(key)
             if self.slots[index] == key:
@@ -73,8 +77,7 @@ class NativeDictionary:
             return self.values[index]
         else:
             return
-         # возвращает value для key,
-         # или None если ключ не найден
+         
 
 """
 na = NativeDictionary(11)
