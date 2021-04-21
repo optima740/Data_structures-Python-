@@ -12,7 +12,7 @@ class SimpleGraph:
         self.vertex = [None] * size
 
     def AddVertex(self, v):
-        # ваш код добавления новой вершины
+        # метод добавления новой вершины
         # с значением value
         # в свободное место массива vertex
         for i in range(len(self.vertex)):
@@ -40,7 +40,8 @@ class SimpleGraph:
         else:
             return False
 
-    def RemoveVertex(self, v):
+    def RemoveVertex(self, v):        
+        # метод удаления вершины со всеми её рёбрами
         index_vertext = v
         if index_vertext != None:
             for vert in self.vertex:
@@ -48,7 +49,6 @@ class SimpleGraph:
                     self.RemoveEdge(index_vertext, self.vertex.index(vert))
             self.vertex[index_vertext] = None
 
-        # ваш код удаления вершины со всеми её рёбрами
     def RemoveEdge(self, v1, v2):
         # удаление ребра между вершинами v1 и v2
         index_v1 = v1
@@ -83,7 +83,6 @@ class SimpleGraph:
             return [self.vertex[VFrom]]
         else:
             vertex_stack = []
-
             current_vertex = VFrom
             count_iter = 0
             while True:
@@ -129,22 +128,18 @@ class SimpleGraph:
     def Propagation(self, VFrom, VTo):
         vertex_dequeA = []
         vertex_dequeB = []
-
         count_iter = 0
         current_vertext = VFrom
-        #path_stack.append(current_vertext)
         for item in self.vertex:
             if item != None:
                 item.Hit = False
         while count_iter <= len(self.m_adjacency):
             self.vertex[current_vertext].Hit = True
             for j in range(len(self.m_adjacency)):
-
                 if self.m_adjacency[current_vertext][j] == 1 and j == VTo:
                     vertex_dequeA.append(current_vertext)
                     vertex_dequeA.append(j)
                     return vertex_dequeA
-
                 elif self.m_adjacency[current_vertext][j] == 1 and j != VTo and self.vertex[j].Hit == False:
                     if len(vertex_dequeB) > 0:
                         if vertex_dequeB.count(j) == 0:
