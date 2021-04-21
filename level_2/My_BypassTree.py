@@ -14,7 +14,7 @@ class BSTFind:  # промежуточный результат поиска
         # в дереве вообще нету узлов
         self.NodeHasKey = False  # True если узел найден
         self.ToLeft = False  # True, если родительскому узлу надо
-        # добавить новый узел левым потомком
+                             # добавить новый узел левым потомком
 
 class BST:
 
@@ -23,6 +23,8 @@ class BST:
         self.levels = 0
 
     def FindNodeByKey(self, key):
+        # ищем в дереве узел и сопутствующую информацию по ключу
+        # возвращает BSTFind
         itemFind = BSTFind()
         if self.Root == None:
             return itemFind
@@ -48,10 +50,10 @@ class BST:
                     return itemFind
                 return itemFind
             return find(self.Root, key)
-        # ищем в дереве узел и сопутствующую информацию по ключу
-        # возвращает BSTFind
 
     def AddKeyValue(self, key, val):
+        # добавляем ключ-значение в дерево
+        # false если ключ уже есть
         search_result = self.FindNodeByKey(key)
         if self.Root == None:
             newNode = BSTNode(key, val, None)
@@ -73,10 +75,9 @@ class BST:
                 newNode.Parent = search_result.Node
                 newNode.from_level = self.Count_Parent(newNode)
                 return True
-        # добавляем ключ-значение в дерево
-          # false если ключ уже есть
 
     def FinMinMax(self, FromNode, FindMax=False):
+        # ищем максимальное/минимальное (узел) в поддереве
         if self.Root == None or FromNode == None:
             return None
         node = FromNode
@@ -88,13 +89,14 @@ class BST:
             while node.RightChild != None:
                 node = node.RightChild
             return node
-        # ищем максимальное/минимальное (узел) в поддереве
 
-    def DeleteNodeByKey(self, key): # удаляем узел по ключу если узел не найден
+    def DeleteNodeByKey(self, key):
+        # удаляем узел по ключу если узел не найден
         if self.Root == None:
             return False
         else:
-            def remove_leaf(del_node):  # функция удаления листа
+            def remove_leaf(del_node):
+                # функция удаления листа
                 if del_node.Parent.LeftChild == del_node:
                     del_node.Parent.LeftChild = None
                     del_node.Parent = None
@@ -102,7 +104,9 @@ class BST:
                     del_node.Parent.RightChild = None
                     del_node.Parent = None
                 return True
-            def remove_node_with_right_child(del_node): # функция удаления узла с одним правым потомком
+            
+            def remove_node_with_right_child(del_node):
+                # функция удаления узла с одним правым потомком
                 if del_node.Parent.LeftChild == del_node:
                     del_node.Parent.LeftChild = del_node.RightChild
                 else:
@@ -111,7 +115,9 @@ class BST:
                 del_node.Parent = None
                 del_node.RightChild = None
                 return True
-            def remove_node_with_left_child(del_node): # функция удаления узла с одним левым потомком
+            
+            def remove_node_with_left_child(del_node):
+                # функция удаления узла с одним левым потомком
                 if del_node.Parent.LeftChild == del_node:
                     del_node.Parent.LeftChild = del_node.LeftChild
                 else:
@@ -120,6 +126,7 @@ class BST:
                 del_node.Parent = None
                 del_node.LeftChild = None
                 return True
+            
             find_remove = self.FindNodeByKey(key)
             del_node = find_remove.Node
             if find_remove.NodeHasKey == False:
@@ -157,6 +164,7 @@ class BST:
             count += 1
         return count
     def Count(self):
+        # количество узлов в дереве
         list_count = []
         if self.Root == None:
             return 0
@@ -179,7 +187,6 @@ class BST:
             size = len(find(self.Root))
             return size
 
-          # количество узлов в дереве
     def  WideAllNodes(self):
         q = []
         list_all = []
@@ -235,6 +242,7 @@ class BST:
                 else:
                     list_all.append(node)
                     return list_all
+                
             def bypass_2(node, list_all):
                 if node.LeftChild != None and node.RightChild != None:
                     list_all.append(node)
