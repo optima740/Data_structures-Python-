@@ -1,18 +1,15 @@
 class Vertex:
-
     def __init__(self, val):
         self.Value = val
 
-
 class SimpleGraph:
-
     def __init__(self, size):
         self.max_vertex = size
         self.m_adjacency = [[0] * size for i in range(size)]
         self.vertex = [None] * size
 
     def AddVertex(self, v):
-        # ваш код добавления новой вершины
+        # код добавления новой вершины
         # с значением value
         # в свободное место массива vertex
         for i in range(len(self.vertex)):
@@ -47,8 +44,8 @@ class SimpleGraph:
                 if vert != None and self.IsEdge(index_vertext, self.vertex.index(vert)) == True:
                     self.RemoveEdge(index_vertext, self.vertex.index(vert))
             self.vertex[index_vertext] = None
-
-        # ваш код удаления вершины со всеми её рёбрами
+        # код удаления вершины со всеми её рёбрами
+        
     def RemoveEdge(self, v1, v2):
         # удаление ребра между вершинами v1 и v2
         index_v1 = v1
@@ -70,6 +67,7 @@ class SimpleGraph:
             for j in i:
                 print ("{:4d}".format(j), end ="")
             print()
+            
 """
 my_graph = SimpleGraph(5)
 my_graph.AddVertex('A')
