@@ -1,23 +1,19 @@
 class SimpleTreeNode:
-
     def __init__(self, val, parent):
         self.NodeValue = val  # значение в узле
         self.Parent = parent  # родитель или None для корня
         self.Children = []  # список дочерних узлов
 
 class SimpleTree:
-
     def __init__(self, root=None):
         self.Root = root  # корень, может быть None
         self.count_leaf = 0
         self.levels = 0
 
-
     def AddChild(self, ParentNode, NewChild):
         if ParentNode == None and self.Root == None:
             self.Root = NewChild
             self.Root.Parent = None
-
         elif ParentNode == None and self.Root != None:
             NewChild.Parent = None
             self.Root.Parent = NewChild
