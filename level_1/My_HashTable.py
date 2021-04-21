@@ -1,4 +1,5 @@
 class HashTable:
+    
     def __init__(self, sz, stp):
         self.size = sz
         self.step = stp
@@ -12,10 +13,12 @@ class HashTable:
         return sum
 
     def hash_fun(self, value):
-        return self.str_to_int(value) % self.size
         # в качестве value поступают строки!
         # всегда возвращает корректный индекс слота
+        return self.str_to_int(value) % self.size
+
     def seek_slot(self, value):
+        # находит индекс пустого слота для значения, или None
         count = 0
         index = self.hash_fun(value)
         while count <= self.size - 1:
@@ -26,10 +29,13 @@ class HashTable:
             else:
                 index += self.step
             count += 1
-        # находит индекс пустого слота для значения, или None
         return None
 
     def put(self, value):
+        # записываем значение по хэш-функции
+        # возвращается индекс слота или None,
+        # если из-за коллизий элемент не удаётся
+        # разместить
         value = str(value).strip()
         index_put = self.seek_slot(value)
         if index_put != None:
@@ -37,12 +43,9 @@ class HashTable:
             return index_put
         else:
             return None
-        # записываем значение по хэш-функции
-        # возвращается индекс слота или None,
-        # если из-за коллизий элемент не удаётся
-        # разместить
-
+        
     def find(self, value):
+        # находит индекс слота со значением, или None
         value = str(value).strip()
         find_index = self.hash_fun(value)
         count = 0
@@ -57,7 +60,7 @@ class HashTable:
         return
 
 
-        # находит индекс слота со значением, или None
+        
 ht = HashTable(9,3)
 
 ht.put('aa')
