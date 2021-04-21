@@ -1,8 +1,7 @@
 class aBST:
 
     def __init__(self, depth):
-        # правильно рассчитайте размер массива для дерева глубины depth:
-
+        # рассчет размера массива для дерева глубины depth:
         def auto_size(L):
             n = 1
             for i in range(1, L+1):
@@ -10,7 +9,6 @@ class aBST:
             return n
         tree_size = auto_size(depth)
         self.Tree = [None] * tree_size  # массив ключей
-
 
     def FindKeyIndex(self, key):
         # ищем в массиве индекс ключа
@@ -42,8 +40,6 @@ class aBST:
                 else:
                     return None # не найден
 
-
-
     def AddKey(self, key):
         # добавляем ключ в массив
         if self.Tree[0] == None:
@@ -59,13 +55,13 @@ class aBST:
                 elif index >= 0:
                     return index
             else:
-
                 return -1
 
     def print_all(self):
+        # индекс добавленного/существующего ключа или -1 если не удалось
         for i in self.Tree:
             print(i)
-        # индекс добавленного/существующего ключа или -1 если не удалось
+        
     
 """
 a_bst = aBST(3)
