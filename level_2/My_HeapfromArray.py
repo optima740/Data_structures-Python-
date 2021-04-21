@@ -32,7 +32,6 @@ class Heap:
                 self.HeapArray[0] = item_next
                 index = 0
                 while True:
-
                     if (2 * index + 2) <= (len(self.HeapArray) - 1) and self.HeapArray[index] < self.HeapArray[2 * index + 1] and self.HeapArray[index] < self.HeapArray[2 * index + 2]:
                        if self.HeapArray[2 * index + 1] > self.HeapArray[2 * index + 2]:
                            tmp = self.HeapArray[2 * index + 1]
@@ -44,7 +43,6 @@ class Heap:
                            self.HeapArray[2 * index + 2] = self.HeapArray[index]
                            self.HeapArray[index] = tmp
                            index = 2 * index + 2
-
                     elif (2*index+2) <= (len(self.HeapArray)-1) and self.HeapArray[index] < self.HeapArray[2 * index + 2]:# and self.HeapArray[index] > self.HeapArray[2 * index + 1]:
                         tmp = self.HeapArray[2 * index + 2]
                         self.HeapArray[2 * index + 2] = self.HeapArray[index]
@@ -59,9 +57,7 @@ class Heap:
                         break
             else:
                 item_out = self.HeapArray.pop(0)
-
             return item_out
-
 
     def MoveMaxUp(self):
         # перемещает новый элемент вверх до того, как найдет
