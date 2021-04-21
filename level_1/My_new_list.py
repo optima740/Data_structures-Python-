@@ -28,7 +28,6 @@ class LinkedList:
             self.head.next = tmp
 
     def delete(self, val, all=False):
-
         if self.len() != 0:
             node = self.head
             prev = None
@@ -82,9 +81,6 @@ class LinkedList:
             node = node.next
         return list_out
 
-
-
-
     def clean(self):
         if self.len()!=0:
             node = self.head
@@ -112,7 +108,6 @@ class LinkedList:
             return count
 
     def insert(self, afterNode, newNode):
-
         if self.len() == 0 or self.head == None or afterNode==None:
             self.add_in_head(newNode)
             return
