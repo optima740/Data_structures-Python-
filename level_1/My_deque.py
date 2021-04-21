@@ -1,15 +1,16 @@
 class Deque:
+    
     def __init__(self):
         self.deque= []
 
     def addFront(self, item):
-        self.deque.insert(0, item)
         # добавление в голову
+        self.deque.insert(0, item)    
 
     def addTail(self, item):
-        self.deque.append(item)
         # добавление в хвост
-
+        self.deque.append(item)
+        
     def removeFront(self):
         # удаление из головы
         if self.size() > 0:
@@ -25,10 +26,11 @@ class Deque:
             return None # если очередь пуста
 
     def size(self):
+        # размер очереди
         if len(self.deque)> 0:
             return len(self.deque)
         else:
-            return 0 # размер очереди
+            return 0 
 
     def print_all(self):
         if self.size() > 0:
@@ -52,7 +54,6 @@ def test_add_rmv_front(N):
         print("Test rmv in empty - OK")
     else:
         print("Test rmv in empty - Fail")
-
     for i in range(1 ,N+1):
         dq.addFront(i)
     if dq.size() == N:
