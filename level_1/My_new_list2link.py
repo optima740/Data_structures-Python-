@@ -36,7 +36,6 @@ class LinkedList2:
             item.prev = None
 
     def delete_to(self, node_del):
-
         node_prev = node_del.prev
         node_next = node_del.next
         if node_prev != None and node_next != None:
@@ -71,9 +70,6 @@ class LinkedList2:
         else:
             return
 
-
-
-
     def print_all_nodes(self):
         node = self.head
         while node != None:
@@ -99,9 +95,6 @@ class LinkedList2:
             return list_out
         else:
             return None
-
-
-
 
     def clean(self):
         if self.len()!=0:
@@ -130,7 +123,6 @@ class LinkedList2:
             return count
 
     def insert(self, afterNode, newNode):
-
         if self.len() == 0 and afterNode==None:
             self.add_in_head(newNode)
             return
@@ -138,14 +130,11 @@ class LinkedList2:
             self.add_in_tail(newNode)
             return
         elif self.len() != 0 and afterNode != None:
-
             node_next = afterNode.next
-
             if node_next!=None:
                 afterNode.next = newNode
                 node_next.prev = newNode
                 newNode.next = node_next
-
                 newNode.prev = afterNode
             elif node_next == None:
                 afterNode.next = newNode
