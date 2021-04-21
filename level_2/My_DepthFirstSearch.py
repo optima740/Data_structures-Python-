@@ -41,16 +41,16 @@ class SimpleGraph:
             return False
 
     def RemoveVertex(self, v):
+        # метод удаления вершины со всеми её рёбрами
         index_vertext = v
         if index_vertext != None:
             for vert in self.vertex:
                 if vert != None and self.IsEdge(index_vertext, self.vertex.index(vert)) == True:
                     self.RemoveEdge(index_vertext, self.vertex.index(vert))
             self.vertex[index_vertext] = None
-
-        # ваш код удаления вершины со всеми её рёбрами
+       
     def RemoveEdge(self, v1, v2):
-        # удаление ребра между вершинами v1 и v2
+        # метод удаление ребра между вершинами v1 и v2
         index_v1 = v1
         index_v2 = v2
         if index_v1 != None and index_v2 != None:
@@ -83,7 +83,6 @@ class SimpleGraph:
             return [self.vertex[VFrom]]
         else:
             vertex_stack = []
-
             current_vertex = VFrom
             count_iter = 0
             while True:
