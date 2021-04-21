@@ -3,12 +3,11 @@ import bitarray as bit
 class BloomFilter:
 
     def __init__(self, f_len):
+        # создаём битовый массив длиной f_len ...
         self.filter_len = f_len
         self.bit_array = bit.bitarray()
         for i in range(self.filter_len):
             self.bit_array.append(0)
-        # создаём битовый массив длиной f_len ...
-
 
     def hash1(self, str1):
         # 17
@@ -16,7 +15,6 @@ class BloomFilter:
         for c in str1:
             code = ((code * 17) + ord(c)) % self.filter_len
         return code
-
 
     def hash2(self, str1):
         # 223
@@ -26,13 +24,13 @@ class BloomFilter:
         return code
 
     def add(self, str1):
+        # добавляем строку str1 в фильтр
         str1 = str(str1).strip()
         self.bit_array[self.hash1(str1)] = 1
         self.bit_array[self.hash2(str1)] = 1
-        # добавляем строку str1 в фильтр
-
-
+        
     def is_value(self, str1):
+        # проверка, имеется ли строка str1 в фильтре
         str1 = str(str1).strip()
         hash_index1 = self.hash1(str1)
         hash_index2 = self.hash2(str1)
@@ -40,7 +38,7 @@ class BloomFilter:
             return True
         else:
             return False
-        # проверка, имеется ли строка str1 в фильтре
+       
 
 """
 fb = BloomFilter(32)
