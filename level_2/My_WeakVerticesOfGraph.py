@@ -1,11 +1,9 @@
 class Vertex:
-
     def __init__(self, val):
         self.Value = val
         self.Hit = False
 
 class SimpleGraph:
-
     def __init__(self, size):
         self.max_vertex = size
         self.m_adjacency = [[0] * size for i in range(size)]
@@ -48,7 +46,8 @@ class SimpleGraph:
                     self.RemoveEdge(index_vertext, self.vertex.index(vert))
             self.vertex[index_vertext] = None
 
-        # ваш код удаления вершины со всеми её рёбрами
+        # код удаления вершины со всеми её рёбрами
+        
     def RemoveEdge(self, v1, v2):
         # удаление ребра между вершинами v1 и v2
         index_v1 = v1
@@ -83,7 +82,6 @@ class SimpleGraph:
             return [self.vertex[VFrom]]
         else:
             vertex_stack = []
-
             current_vertex = VFrom
             count_iter = 0
             while True:
