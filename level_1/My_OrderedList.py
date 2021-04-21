@@ -1,28 +1,27 @@
-
 class Node:
+    
     def __init__(self, v):
         self.value = v
         self.prev = None
         self.next = None
 
 class OrderedList:
+    
     def __init__(self, asc):
         self.head = None
         self.tail = None
         self.__ascending = asc
 
-
-
     def compare(self, v1, v2):
+        # -1 если v1 < v2
+        # 0 если v1 == v2
+        # +1 если v1 > v2
         if v1 == v2:
             return 0
         elif v1 < v2:
             return -1
         else:
             return 1
-        # -1 если v1 < v2
-        # 0 если v1 == v2
-        # +1 если v1 > v2
 
     def add(self, value):
         n = Node(value)
@@ -71,7 +70,6 @@ class OrderedList:
                         n.next = node
                         self.head = n
                         return
-
                 node = node.next
             # вставка больше или меньше чем все элементы - вставляем в конец
             tmp_node_prev = self.tail
@@ -166,10 +164,14 @@ class OrderedList:
         return r
 
 class OrderedStringList(OrderedList):
+    
     def __init__(self, asc):
         super(OrderedStringList, self).__init__(asc)
 
     def compare(self, v1, v2):
+        # -1 если v1 < v2
+        # 0 если v1 == v2
+        # +1 если v1 > v2
         str1 = str(v1).strip()
         str2 = str(v2).strip()
 
@@ -186,9 +188,7 @@ class OrderedStringList(OrderedList):
             return 0
         elif len(str1) > 0 and len(str2) == 0:
             return 1
-        # -1 если v1 < v2
-        # 0 если v1 == v2
-        # +1 если v1 > v2
+
 
 
 """
