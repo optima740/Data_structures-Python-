@@ -55,9 +55,6 @@ class LinkedList:
         else:
             return
 
-
-
-
     def print_all_nodes(self):
         node = self.head
         while node != None:
